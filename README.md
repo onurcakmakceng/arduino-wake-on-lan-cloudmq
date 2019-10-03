@@ -61,3 +61,25 @@ $ systemctl start wol.service
 ```
 
 - Done
+
+# Client
+
+## Send Magic Packet Using Python
+
+- Set Broadcast IP
+
+```
+$ BROADCAST_IP=192.168.1.255
+```
+
+- Set MAC address of the target machine.
+
+```
+$ MAC_ADDRESS=00:11:22:33:44:55
+```
+
+- Send magic packet:
+
+```
+$ python3 client/send_magic_packet.py $BROADCAST_IP $MAC_ADDRESS
+```
