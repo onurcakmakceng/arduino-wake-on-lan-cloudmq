@@ -53,16 +53,14 @@ void setup() {
 
 //--WORKER-THREAD-------------------------------------
 void loop() {
+  //Send wake command via pressing 'w' from serial command controller
   if (Serial.read() == 'w') {
-     
-    Serial.println("I'm in");
-    
     byte magicPacket[102];
     
     //#TODO: String operations can be implemented later
     int i, j, k;
     
-    // Magic message? or Offset?
+    // Create magic wake up packet
     for (i = 0; i < 6; i++) {
       magicPacket[i] = 0xFF;
     }
@@ -76,6 +74,7 @@ void loop() {
 
     EthernetUDP Udp;
 
+    Serial.println("Sending magic wake up packet!");
     Udp.begin(wolPort);
     Udp.beginPacket(broadCastIp, wolPort);
     Udp.write(magicPacket, sizeof magicPacket);
